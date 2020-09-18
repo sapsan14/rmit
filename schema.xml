@@ -1,0 +1,26 @@
+<?xml version="1.0"encoding="UTF-8"?>
+<root>
+    <createTable tableName="Application"
+                 remarks="Application (or module) information. Contains common record shared for all instances">
+        <column name="app_code" type="varchar(100)"
+                remarks="unique code for application. Must be known by all nodes (or by discovery script)">
+            <constraints primaryKey="true" nullable="false"/>
+        </column>
+        <column name="name" type="varchar(100)" remarks="Human readable name"/>
+        <column name="app_group" type="varchar(100)"
+                remarks="Used for multiple modules that make up one application (UI and backend)"/>
+        <column name="app_type" type="varchar(50)"
+                remarks="type or category (java;php;box;oscomponent;database engine)"/>
+        <column name="description" type="varchar(250)"/>
+    </createTable>
+
+    <createTable tableName="App_service" remarks="Some service that other applications can depend on">
+        <column name="app_code" type="varchar(100)" remarks="link to application table"/>
+        <column name="service_code" type="varchar(100)"
+                remarks="unique code (inside application) for service. Must be known by all nodes and dependent nodes (or by discovery script)"/>
+        <column name="name" type="varchar(100)" remarks="Human readable name"/>
+        <column name="type" type="varchar(50)" remarks="(HTTP SAML SSH JDBC ODBC )"/>
+        <column name="sub_type" type="varchar(50)" remarks="REST SOAP do we need it?"/>
+        <column name="description" type="varchar(250)"/>
+    </createTable>
+</root>
